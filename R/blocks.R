@@ -141,7 +141,7 @@ rni_to_md <- function(block) {
 #' @return A vector of strings
 #' @keywords internal
 rni_text <- function(block) {
-  block[[block$type]]$text |>
+  block[[block$type]]$rich_text |>
     purrr::map_chr(rni_annotate_text) |>
     paste(sep = "", collapse = "")
 }
