@@ -9,6 +9,9 @@ rni_parse_block(block, render_level)
 \arguments{
 \item{block}{A notion block object}
 }
+\value{
+A string
+}
 \description{
 Parse notion blocks
 }

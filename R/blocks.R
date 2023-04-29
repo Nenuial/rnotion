@@ -30,7 +30,7 @@ rni_render_blocks <- function(id, render_level = 0) {
 #'
 #' @param block A notion block object
 #'
-#' @return
+#' @return A string
 #' @export
 rni_parse_block <- function(block, render_level) {
   markdown <- ""
@@ -88,6 +88,10 @@ rni_to_md <- function(block) {
     block$select$name -> markdown
   }
 
+  if(block$type == "multi_select") {
+    block$multi_select |> purrr::map(~purrr::pluck(.x, "name")) |> purrr::list_c() |> stringr::str_c(collapse = ", ") -> markdown
+  }
+
   if(block$type == "phone_number") {
     block$phone_number -> markdown
   }
@@ -98,7 +102,8 @@ rni_to_md <- function(block) {
 
   if(block$type == "image") {
     url <- block$image$file$url
-    dest <- tempfile(fileext = stringr::str_match(url, ".*/([^?]*)")[,2])
+    fs::dir_create("_images")
+    dest <- fs::file_temp(tmp_dir = "_images", ext = stringr::str_match(url, ".*/([^?]*)")[,2])
 
     download.file(url, dest)
 
