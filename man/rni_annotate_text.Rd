@@ -15,4 +15,3 @@ A formated string
 \description{
 Format notion text
 }
-\keyword{internal}

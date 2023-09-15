@@ -205,7 +205,7 @@ rni_date <- function(block) {
 #' @param text A notion text object
 #'
 #' @return A formated string
-#' @keywords internal
+#' @export
 rni_annotate_text <- function(text) {
   plain_text <- text$plain_text
 
